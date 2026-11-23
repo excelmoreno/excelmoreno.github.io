@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CimaReviews | Descubre dónde comer</title>
+  <meta name="description" content="Descubre opciones de comida, consulta opiniones y encuentra tu próximo lugar favorito con CimaReviews.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#inicio"><span class="brand-icon">C</span> CimaReviews</a>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#lugares">Lugares</a>
+        <a href="#nosotros">Acerca de</a>
+      </nav>
+      <a class="nav-cta" href="#lugares">Explorar</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">DESCUBRE · OPINA · DISFRUTA</span>
+          <h1>Tu próxima comida favorita <span>está aquí.</span></h1>
+          <p>Descubre lugares para comer, conoce opiniones y encuentra nuevas opciones cerca de tu campus.</p>
+          <a class="button" href="#lugares">Explorar lugares <span>→</span></a>
+        </div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63f?auto=format&fit=crop&w=1000&q=85" alt="Comida fresca servida en un plato">
+          <div class="photo-note"><strong>Encuentra algo rico</strong><small>Opciones para cada antojo</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog section" id="lugares">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">CATÁLOGO</span>
+          <h2>Explora lugares</h2>
+          <p>Una selección de opciones para tu próxima salida o pausa entre clases.</p>
+        </div>
+
+        <div class="search-row">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="search" type="search" placeholder="Buscar lugar o comida..." aria-label="Buscar lugar o comida">
+          </label>
+          <div class="filters" id="filters">
+            <button class="filter active" data-category="Todos">Todos</button>
+            <button class="filter" data-category="Café">Café</button>
+            <button class="filter" data-category="Comida rápida">Comida rápida</button>
+            <button class="filter" data-category="Postres">Postres</button>
+          </div>
+        </div>
+
+        <div class="cards" id="cards">
+          <article class="place-card" data-category="Café" data-search="café central cafe bebidas latte">
+            <img src="https://images.unsplash.com/photo-1507133750040-4a8f570a2c8a?auto=format&fit=crop&w=800&q=80" alt="Café servido en una taza">
+            <div class="card-content">
+              <span class="category">Café</span>
+              <h3>Café Central</h3>
+              <p>Café, bebidas frías y un espacio para relajarte.</p>
+              <div class="rating"><span>★★★★★</span> <small>4.6 · Opiniones de ejemplo</small></div>
+            </div>
+          </article>
+
+          <article class="place-card" data-category="Comida rápida" data-search="burger point hamburguesa papas comida rápida">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa con ingredientes frescos">
+            <div class="card-content">
+              <span class="category">Comida rápida</span>
+              <h3>Burger Point</h3>
+              <p>Hamburguesas y opciones para un antojo rápido.</p>
+              <div class="rating"><span>★★★★☆</span> <small>4.3 · Opiniones de ejemplo</small></div>
+            </div>
+          </article>
+
+          <article class="place-card" data-category="Postres" data-search="dulce pausa postres pastel galletas">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80" alt="Postre con chocolate">
+            <div class="card-content">
+              <span class="category">Postres</span>
+              <h3>Dulce Pausa</h3>
+              <p>Postres, galletas y algo dulce para compartir.</p>
+              <div class="rating"><span>★★★★★</span> <small>4.8 · Opiniones de ejemplo</small></div>
+            </div>
+          </article>
+
+          <article class="place-card" data-category="Comida rápida" data-search="green bowl ensaladas bowls saludable">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Bowl de ensalada y vegetales">
+            <div class="card-content">
+              <span class="category">Comida rápida</span>
+              <h3>Green Bowl</h3>
+              <p>Bowls, ensaladas y alternativas frescas.</p>
+              <div class="rating"><span>★★★★☆</span> <small>4.2 · Opiniones de ejemplo</small></div>
+            </div>
+          </article>
+        </div>
+        <p class="empty" id="empty">No encontramos lugares que coincidan con tu búsqueda.</p>
+        <p class="demo-note">Los establecimientos y calificaciones mostrados son ejemplos ilustrativos de esta primera versión.</p>
+      </div>
+    </section>
+
+    <section class="about section" id="nosotros">
+      <div class="container about-grid">
+        <div class="about-mark">CR</div>
+        <div>
+          <span class="eyebrow">¿QUÉ ES CIMAREVIEWS?</span>
+          <h2>Elegir dónde comer, más fácil.</h2>
+          <p>CimaReviews es una propuesta digital que busca conectar a la comunidad universitaria con establecimientos de comida. Queremos ayudar a descubrir lugares, consultar experiencias y compartir opiniones.</p>
+          <a class="text-link" href="#lugares">Conoce el catálogo →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="business">
+      <div class="container business-inner">
+        <div>
+          <span class="eyebrow light">PARA ESTABLECIMIENTOS</span>
+          <h2>Haz que más personas conozcan tu negocio.</h2>
+          <p>CimaReviews busca dar visibilidad a negocios de comida a través de perfiles, productos y espacios promocionales.</p>
+        </div>
+        <a class="button button-light" href="#nosotros">Conoce la propuesta</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand brand-footer" href="#inicio"><span class="brand-icon">C</span> CimaReviews</a>
+      <span>Descubre · Opina · Disfruta</span>
+      <small>© 2026 CimaReviews · Versión 1</small>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
