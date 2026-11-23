@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CimaReviews V2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo" onclick="showSection('inicio')">
+            <span class="logo-icon">C</span>
+            <span>Cima<span class="logo-green">Reviews</span></span>
+        </a>
+
+        <nav class="nav">
+            <a href="#" onclick="showSection('inicio')">Inicio</a>
+            <a href="#" onclick="showSection('favoritos')">Favoritos</a>
+            <a href="#" onclick="showSection('promociones')">Promociones</a>
+            <a href="#" id="sellerLink" class="hidden" onclick="showSection('vendedor')">Mi negocio</a>
+        </nav>
+
+        <div class="user-actions" id="userActions">
+            <button class="btn btn-outline" onclick="openAuth('login')">Iniciar sesión</button>
+            <button class="btn btn-primary" onclick="openAuth('register')">Registrarse</button>
+        </div>
+
+        <div class="user-actions hidden" id="loggedActions">
+            <span id="userName"></span>
+            <button class="btn btn-outline" onclick="logout()">Salir</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- INICIO -->
+        <section id="inicio" class="page-section">
+            <section class="hero">
+                <div class="hero-content">
+                    <span class="eyebrow">TU GUÍA DE COMIDA UNIVERSITARIA</span>
+                    <h1>Encuentra tu próximo lugar favorito.</h1>
+                    <p>
+                        Descubre cafeterías y restaurantes cerca de tu universidad.
+                        Consulta productos, promociones y opiniones de otros estudiantes.
+                    </p>
+                    <button class="btn btn-primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+                        Explorar establecimientos
+                    </button>
+                </div>
+                <div class="hero-decoration">
+                    <div class="hero-circle">🍔</div>
+                    <span class="floating-food food-one">🍕</span>
+                    <span class="floating-food food-two">☕</span>
+                    <span class="floating-food food-three">🥗</span>
+                </div>
+            </section>
+
+            <section class="section" id="catalogo">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">DESCUBRE</span>
+                        <h2>Establecimientos</h2>
+                        <p>Encuentra opciones para tu próxima comida.</p>
+                    </div>
+                </div>
+
+                <div class="search-area">
+                    <input type="search" id="searchInput" placeholder="Buscar establecimiento..." oninput="renderBusinesses()">
+                    <select id="categoryFilter" onchange="renderBusinesses()">
+                        <option value="Todos">Todas las categorías</option>
+                        <option value="Cafetería">Cafeterías</option>
+                        <option value="Comida rápida">Comida rápida</option>
+                        <option value="Postres">Postres</option>
+                        <option value="Comida saludable">Comida saludable</option>
+                    </select>
+                </div>
+
+                <div class="business-grid" id="businessGrid"></div>
+            </section>
+        </section>
+
+        <!-- FAVORITOS -->
+        <section id="favoritos" class="page-section hidden section">
+            <span class="eyebrow">TUS PREFERIDOS</span>
+            <h2>Mis favoritos</h2>
+            <p>Guarda los establecimientos que te gustaría visitar.</p>
+            <div class="business-grid" id="favoritesGrid"></div>
+        </section>
+
+        <!-- PROMOCIONES -->
+        <section id="promociones" class="page-section hidden section">
+            <span class="eyebrow">OPORTUNIDADES</span>
+            <h2>Promociones destacadas</h2>
+            <p>Conoce algunas ofertas disponibles en el catálogo.</p>
+            <div class="business-grid" id="promotionsGrid"></div>
+        </section>
+
+        <!-- PANEL VENDEDOR -->
+        <section id="vendedor" class="page-section hidden section">
+            <span class="eyebrow">ADMINISTRACIÓN</span>
+            <h2>Mi negocio</h2>
+            <p>Agrega un establecimiento para mostrarlo en CimaReviews.</p>
+
+            <form id="businessForm" class="form-card">
+                <label for="businessName">Nombre del establecimiento</label>
+                <input type="text" id="businessName" required placeholder="Ej. Cafetería Central">
+
+                <label for="businessCategory">Categoría</label>
+                <select id="businessCategory" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option>Cafetería</option>
+                    <option>Comida rápida</option>
+                    <option>Postres</option>
+                    <option>Comida saludable</option>
+                </select>
+
+                <label for="businessDescription">Descripción</label>
+                <textarea id="businessDescription" required placeholder="Describe tu establecimiento..."></textarea>
+
+                <label for="businessPrice">Precio aproximado</label>
+                <input type="text" id="businessPrice" placeholder="Ej. $50 - $100">
+
+                <label for="businessLocation">Ubicación o enlace de Google Maps</label>
+                <input type="text" id="businessLocation" placeholder="Ej. Edificio principal">
+
+                <label for="businessImage">URL de imagen (opcional)</label>
+                <input type="url" id="businessImage" placeholder="https://...">
+
+                <label class="check-label">
+                    <input type="checkbox" id="businessPromotion">
+                    Marcar como promoción destacada
+                </label>
+
+                <button type="submit" class="btn btn-primary">Agregar establecimiento</button>
+            </form>
+
+            <h3 class="subheading">Mis establecimientos registrados</h3>
+            <div id="sellerBusinesses" class="business-grid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#" class="logo">
+            <span class="logo-icon">C</span>
+            <span>Cima<span class="logo-green">Reviews</span></span>
+        </a>
+        <p>Descubre. Opina. Disfruta.</p>
+        <p class="copyright">© 2026 CimaReviews. Proyecto universitario.</p>
+    </footer>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div class="modal hidden" id="authModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeAuth()">×</button>
+            <h2 id="authTitle">Iniciar sesión</h2>
+            <p id="authDescription">Ingresa a tu cuenta de CimaReviews.</p>
+
+            <form id="authForm">
+                <div id="registerNameGroup" class="hidden">
+                    <label for="authName">Nombre</label>
+                    <input type="text" id="authName" placeholder="Tu nombre">
+                </div>
+
+                <label for="authEmail">Correo electrónico</label>
+                <input type="email" id="authEmail" required placeholder="correo@ejemplo.com">
+
+                <label for="authPassword">Contraseña</label>
+                <input type="password" id="authPassword" required minlength="4" placeholder="Mínimo 4 caracteres">
+
+                <div id="registerRoleGroup" class="hidden">
+                    <label for="authRole">Tipo de cuenta</label>
+                    <select id="authRole">
+                        <option value="cliente">Cliente</option>
+                        <option value="vendedor">Vendedor</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width" id="authSubmit">
+                    Iniciar sesión
+                </button>
+            </form>
+
+            <p class="auth-switch" id="authSwitch">
+                ¿No tienes cuenta?
+                <a href="#" onclick="openAuth('register')">Regístrate</a>
+            </p>
+            <p id="authMessage" class="message"></p>
+        </div>
+    </div>
+
+    <!-- MODAL DE RESEÑAS -->
+    <div class="modal hidden" id="reviewModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeReview()">×</button>
+            <h2 id="reviewTitle">Opiniones</h2>
+            <div id="reviewList"></div>
+
+            <form id="reviewForm" class="review-form">
+                <h3>Comparte tu experiencia</h3>
+                <label for="reviewRating">Calificación</label>
+                <select id="reviewRating">
+                    <option value="5">★★★★★ - Excelente</option>
+                    <option value="4">★★★★ - Muy bueno</option>
+                    <option value="3">★★★ - Regular</option>
+                    <option value="2">★★ - Malo</option>
+                    <option value="1">★ - Muy malo</option>
+                </select>
+
+                <label for="reviewText">Tu opinión</label>
+                <textarea id="reviewText" required placeholder="¿Cómo fue tu experiencia?"></textarea>
+                <button type="submit" class="btn btn-primary full-width">Publicar reseña</button>
+            </form>
+            <p id="reviewMessage" class="message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
